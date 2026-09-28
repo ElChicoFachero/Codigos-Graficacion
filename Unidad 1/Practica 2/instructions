@@ -1,0 +1,7 @@
+Objetivo de la Practica Noº2
+Una plataforma corporatica necesita crear estados visuales coherentes sin definir 
+manualmente multiples colores. A partir de un solo color base se generaran variantes
+para estado normal, hover e inactivo.
+
+Instrucciones para ejecutar
+.Solamente darle click en el archivo llamado "index.html"
