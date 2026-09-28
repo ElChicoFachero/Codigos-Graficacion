@@ -1,0 +1,7 @@
+Objetivo de la Practica Noº3
+Se requiere dibujar una linea en una interfaz de hardware limitado. En lugar de usar
+lineTo(), el algoritmo debera calcular los puntos intermedios y activar
+cada pixel de forma incremental
+
+Instrucciones para ejecutar
+.Solamente darle click en el archivo llamado "index.html"
