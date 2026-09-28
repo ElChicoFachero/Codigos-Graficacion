@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 3 - Algoritmo DDA</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: sans-serif;
+            background: #e2e8f0;
+        }
+        canvas{
+            background: #fff;
+            cursor:crosshair;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        p{
+            color:#475569;
+        }
+    </style>
+</head>
+<body>
+   <h2>Renderizado de Bajo Nivel (DDA)</h2>
+<p>Haz clic en dos puntos diferentes del lienzo para trazar una linea pixel por píxel.</p>
+<canvas id="lienzoDDA" width="600" height="400"></canvas>
+<br><br>
+<button onclick="limpiarLienzo()" style="padding: 10px 20px; cursor: pointer; ">Limpiar Lienzo</button>
+
+<div id="infoReto" style="margin-top: 20px;">
+  <p id="txtPendiente"><b>Pendiente (m):</b> N/A</p>
+  <table border="1" style="margin: 0 auto; border-collapse: collapse; background: white; width: 80%; max-width: 600px;">
+    <thead>
+      <tr style="background: #cbd5e1;">
+        <th style="padding: 6px; border: 1px solid #94a3b8;">Paso (i)</th>
+        <th style="padding: 6px; border: 1px solid #94a3b8;">X (calculada)</th>
+        <th style="padding: 6px; border: 1px solid #94a3b8;">Y (calculada)</th>
+        <th style="padding: 6px; border: 1px solid #94a3b8;">Pixel Renderizado</th>
+      </tr>
+    </thead>
+    <tbody id="tablaCoordenadas"></tbody>
+  </table>
+</div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
