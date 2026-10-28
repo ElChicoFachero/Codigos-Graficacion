@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contenedor Marítimo 3D</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="encabezado">
+        <h1>Contenedor Marítimo de 43 Pies</h1>
+        <p>Modelo tridimensional con estructura metálica</p>
+    </header>
+
+    <main>
+        <section class="panel">
+            <div id="escena"></div>
+
+            <div class="controles">
+                <button id="vistaCompleta">Vista completa</button>
+                <button id="vistaPuertas">Ver puertas</button>
+                <button id="vistaLateral">Ver lateral</button>
+            </div>
+        </section>
+
+        <section class="informacion">
+            <h2>Dimensiones del contenedor</h2>
+
+            <div class="datos">
+                <div>
+                    <strong>43 pies</strong>
+                    <span>Largo</span>
+                </div>
+
+                <div>
+                    <strong>8 pies</strong>
+                    <span>Ancho</span>
+                </div>
+
+                <div>
+                    <strong>8.5 pies</strong>
+                    <span>Alto</span>
+                </div>
+            </div>
+
+            <p class="ayuda">
+                Arrastra el mouse para girar el modelo y utiliza
+                la rueda para acercar o alejar la vista.
+            </p>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
