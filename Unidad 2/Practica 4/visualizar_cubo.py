@@ -28,49 +28,73 @@ def rotacion_x(grados):
         [0, 0, 0, 1]
     ], dtype = float)
 
-def rotacion_y(grados):
-    t = np.radians(grados)
-    c, s = np.cos(t), np.sin(t)
-    return np.array([
-        [c, 0, s, 0],
-        [0, 1, 0, 0],
-        [-s, 0, c, 0],
-        [0, 0, 0, 1]
-    ], dtype = float)
+vertices = np.array([ #Cubo Original
+    [-1, -1, -1],
+    [1, -1, -1],
+    [1, 1, -1],
+    [-1, 1, -1],
+    [-1, -1, 1],
+    [1, -1, 1],
+    [1, 1, 1],
+    [-1, 1, 1]
 
-def rotacion_z(grados):
-    t = np.radians(grados)
-    c, s = np.cos(t), np.sin(t)
-    return np.array([
-        [c, -s, 0, 0],
-        [s, c, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1]
-    ], dtype = float)
-
-vertices = np.array([
-    [-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],
-    [-1,-1, 1],[1,-1, 1],[1, 1, 1],[-1, 1, 1]
 ], dtype=float)
 
 aristas = [(0,1),(1,2),(2,3),(3,0),
            (4,5),(5,6),(6,7),(7,4),
            (0,4),(1,5),(2,6),(3,7)]
 
-Vh = np.c_[vertices, np.ones(len(vertices))] 
-M = (obtener_matriz_traslacion_3d(3,1,2) @ rotacion_x(35) @ obtener_matriz_escalacion_3d(1.5, 0.8, 2.0))
-V2 = (M @ Vh.T).T[:, :3]
+#Coordenada Homogeneas
+VH = np.c_[vertices, np.ones(len(vertices))]
 
-# Visualizar el cubo
-fig = plt.figure(figsize=(8, 6))
-ax = fig.add_subplot(111, projection='3d')
+#Original
+V_Original = vertices
+#Escalacion
+S = obtener_matriz_escalacion_3d(1.5, 0.8, 2.0)
+V_Escalado = (S @ VH.T).T[:, :3]
+#Traslacion
+T = obtener_matriz_traslacion_3d(3, 1, 2)
+V_Trasladado = (T @ VH.T).T[:, :3]
+#Rotacion
+R = rotacion_x(35)
+V_Rotado = (R @ VH.T).T[:, :3]
 
-# Dibujar las aristas
-for i, j in aristas:
-    ax.plot(*zip(vertices[i], vertices[j]))
-    ax.plot(*zip(V2[i], V2[j]))
+#Mostrar Matrices
 
-ax.set_xlabel('X'); ax.set_ylabel('Y'); ax.set_zlabel('Z')
-ax.set_title('Cubo Original vs Transformado')
+print ("Matriz de Escalacion:\n", S)
+print ("Matriz de Traslacion:\n", T)    
+print ("Matriz de Rotacion:\n", R)
 
+#Grafica
+fig = plt.figure(figsize= (8,6))
+ax = fig.add_subplot(111, projection="3d")
+
+#Cubo original
+def dibujar_cubo(V, color):
+    for i, j in aristas:
+        ax.plot(
+            [V[i,0],V[j,0]],
+            [V[i,1],V[j,1]],
+            [V[i,2],V[j,2]],
+            color=color,
+            linewidth=2
+    )
+
+#Dibujar los 4 cubos
+dibujar_cubo(V_Original, "blue")
+dibujar_cubo(V_Escalado, "green")    
+dibujar_cubo(V_Trasladado, "red")
+dibujar_cubo(V_Rotado, "purple")
+
+#Nombres
+ax.text(0, 0, 0, "Original", color="black")
+ax.text(3, 1, 2, "Trasladado", color="blue")
+ax.text(0, 0, 0, "Escalado", color="green")
+ax.text(0, 0, 0, "Rotado", color="red")
+
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+
+ax.set_title("Cubo original y transformaciones por separado")
 plt.show()
